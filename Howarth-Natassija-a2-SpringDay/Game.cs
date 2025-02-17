@@ -6,7 +6,7 @@ using System.Numerics;
 namespace MohawkGame2D
 {
     /// <summary>
-    ///     Your game code goes inside this class!
+    ///  Your game code goes inside this class!
     /// </summary>
     public class Game
     {
@@ -25,10 +25,8 @@ namespace MohawkGame2D
         Vector2[] raindropPositions = new Vector2[30];
         float[] raindropSpeed = new float[30];
 
-
-
         /// <summary>
-        ///     Setup runs once before the game loop begins.
+        /// Setup runs once before the game loop begins.
         /// </summary>
         public void Setup()
         {
@@ -39,7 +37,7 @@ namespace MohawkGame2D
         }
 
         /// <summary>
-        ///     Update runs every frame.
+        /// Update runs every frame.
         /// </summary>
         public void Update()
         {
@@ -48,15 +46,11 @@ namespace MohawkGame2D
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
 
             {
-                drawRaindrops();
+            drawRaindrops();
             }
-
             drawClouds();
             drawBunny();
-
-
         }
-
         public void InitializeRaindrops()
         {
             for (int i = 0; i < raindropPositions.Length; i++)
@@ -65,20 +59,15 @@ namespace MohawkGame2D
                 raindropSpeed[i] = 1f + (float)(i % 5) * 0.5f;
             }
         }
-
         public void drawBackground()
         {
-
             // Draw sky
             Window.ClearBackground(SkyBlue);
 
             // Draw sun
             Draw.FillColor = SunYellow;
             Draw.Circle(370, 70, 60);
-
-
         }
-
         public void drawClouds()
         {
             // Draw clouds 
@@ -88,89 +77,75 @@ namespace MohawkGame2D
                 int x = 50 + i * 100;
                 Draw.Circle(x, 0, 75);
             }
-
         }
-
-
         public void drawBunny()
         {
-
-
-            //Bunny body
+            // Bunny body
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(200, 200, 90, 120);
 
-
-            //Bunny ear
+            // Bunny ear
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(180, 75, 20, 80);
 
-            //Bunny other ear
+            // Bunny other ear
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(220, 75, 20, 80);
 
-            //Bunny body fur
+            // Bunny body fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(200, 200, 50, 70);
 
-            //Bunny ears inside fur
+            // Bunny ears inside fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(220, 75, 10, 50);
 
-            //Bunny ears inside fur
+            // Bunny ears inside fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(180, 75, 10, 50);
 
-            //Bunny head
+            // Bunny head
             Draw.FillColor = BunnyBody;
             Draw.Circle(200, 120, 38);
 
-            //draw nose
+            // Draw nose
             Draw.FillColor = NoseBrown;
             Draw.Circle(200, 130, 3);
 
-            //Draw Eyes
+            // Draw Eyes
             Draw.FillColor = Black;
             Draw.Circle(190, 120, 4);
 
-            //Draw Eyes
+            // Draw Eyes
             Draw.FillColor = Black;
             Draw.Circle(210, 120, 4);
 
-            //Draw arms
-
+            // Draw arms
             Draw.FillColor = BunnyBody;
             Draw.Circle(155, 170, 15);
 
             Draw.FillColor = BunnyBody;
             Draw.Circle(245, 170, 15);
 
-            //draw arm inner bits
-
+            // Draw arm inner bits
             Draw.FillColor = GreyCloud;
             Draw.Circle(155, 170, 8);
 
             Draw.FillColor = GreyCloud;
             Draw.Circle(245, 170, 8);
 
-
-            //Draw ground
-
+            // Draw ground
             Draw.FillColor = GreenGrass;
             Draw.Rectangle(0, 265, 600, 400);
 
-            //Draw feet
-
+            // Draw feet
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(225, 260, 40, 20);
 
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(175, 260, 40, 20);
 
-
-
         }
-
         public void drawRaindrops()
         {
             Draw.FillColor = Rainblue;
