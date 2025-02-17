@@ -67,6 +67,10 @@ namespace MohawkGame2D
             // Draw sun
             Draw.FillColor = SunYellow;
             Draw.Circle(370, 70, 60);
+
+            // Draw ground 
+            Draw.FillColor = GreenGrass;
+            Draw.Rectangle(0, 265, 600, 400);
         }
         public void drawClouds()
         {
@@ -133,10 +137,6 @@ namespace MohawkGame2D
 
             Draw.FillColor = GreyCloud;
             Draw.Circle(245, 170, 8);
-
-            // Draw ground
-            Draw.FillColor = GreenGrass;
-            Draw.Rectangle(0, 265, 600, 400);
 
             // Draw feet
             Draw.FillColor = BunnyBody;
