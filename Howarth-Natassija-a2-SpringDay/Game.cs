@@ -89,21 +89,6 @@ namespace MohawkGame2D
                 Draw.Circle(x, 0, 75);
             }
 
-            // Draw top of umbrella at mouse postion
-
-            Draw.FillColor = Color.Red;
-
-            Draw.LineColor = Color.Red;
-
-            Draw.Triangle(Input.GetMouseX(), Input.GetMouseY(), 50, 50, 50, 30);
-
-            // Draw an umbrella handle at mouse position
-            Draw.FillColor = Color.LightGray;
-            
-            Draw.LineColor = Color.LightGray;
-            
-            Draw.Rectangle(Input.GetMouseX(), Input.GetMouseY(), 10, 100);
-
         }
 
 
