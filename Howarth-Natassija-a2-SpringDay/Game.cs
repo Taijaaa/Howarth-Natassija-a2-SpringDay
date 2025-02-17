@@ -11,7 +11,6 @@ namespace MohawkGame2D
     public class Game
     {
         // Place your variables here:
-
         Color GreenGrass = new Color("ace1af");
         Color BunnyBody = new Color("d8bab4");
         Color PinkBody = new Color("d98584");
@@ -22,6 +21,10 @@ namespace MohawkGame2D
         Color NoseBrown = new Color("574332");
         Color Black = new Color("000000");
 
+        //Raindrops
+        Vector2[] raindropPositions = new Vector2[30];
+        float[] raindropSpeed = new float[30];
+
 
 
         /// <summary>
@@ -29,18 +32,41 @@ namespace MohawkGame2D
         /// </summary>
         public void Setup()
         {
-
             Window.SetTitle("Spring Day");
             Window.SetSize(400, 400);
             Draw.LineSize = 0;
-
+            InitializeRaindrops();
         }
 
         /// <summary>
         ///     Update runs every frame.
         /// </summary>
         public void Update()
+        {
+            drawBackground();
 
+            if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
+
+            {
+                drawRaindrops();
+            }
+
+            drawClouds();
+            drawBunny();
+
+
+        }
+
+        public void InitializeRaindrops()
+        {
+            for (int i = 0; i < raindropPositions.Length; i++)
+            {
+                raindropPositions[i] = new Vector2(i * 12, 0f);
+                raindropSpeed[i] = 1f + (float)(i % 5) * 0.5f;
+            }
+        }
+
+        public void drawBackground()
         {
 
             // Draw sky
@@ -48,62 +74,81 @@ namespace MohawkGame2D
 
             // Draw sun
             Draw.FillColor = SunYellow;
-            Draw.Circle(380, 30, 60);
+            Draw.Circle(370, 70, 60);
 
-            // Draw a circle at mouse position
-            Draw.FillColor = Color.LightGray; ;
-            Draw.LineColor = Color.LightGray; ;
+
+        }
+
+        public void drawClouds()
+        {
+            // Draw clouds 
+            Draw.FillColor = Color.LightGray;
+            for (int i = 0; i < 4; i++)
+            {
+                int x = 50 + i * 100;
+                Draw.Circle(x, 0, 75);
+            }
+
+            // Draw an umbrella at mouse position
+            Draw.FillColor = Color.LightGray;
+            ;
+            Draw.LineColor = Color.LightGray;
+            ;
             Draw.Ellipse(Input.GetMouseX(), Input.GetMouseY(), 100, 90);
 
             // Draw an ellipse at mouse position
             Draw.FillColor = Color.LightGray;
             Draw.LineColor = Color.LightGray;
             Draw.Ellipse(Input.GetMouseX(), Input.GetMouseY(), 170, 65);
+        }
 
-            // Draw bunny
+
+        public void drawBunny()
+        {
+
 
             //Bunny body
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(200, 200, 90, 120);
 
 
-            // Draw Bunny ear
+            //Bunny ear
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(180, 75, 20, 80);
 
-            // Draw Bunny other ear
+            //Bunny other ear
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(220, 75, 20, 80);
 
-            // Draw Bunny body fur
+            //Bunny body fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(200, 200, 50, 70);
 
-            // Draw Bunny ears inside fur
+            //Bunny ears inside fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(220, 75, 10, 50);
 
-            // Draw Bunny ears inside fur
+            //Bunny ears inside fur
             Draw.FillColor = GreyCloud;
             Draw.Ellipse(180, 75, 10, 50);
 
-            // Draw Bunny head
+            //Bunny head
             Draw.FillColor = BunnyBody;
             Draw.Circle(200, 120, 38);
 
-            // Draw nose
+            //draw nose
             Draw.FillColor = NoseBrown;
             Draw.Circle(200, 130, 3);
 
-            // Draw Eyes
+            //Draw Eyes
             Draw.FillColor = Black;
             Draw.Circle(190, 120, 4);
 
-            // Draw Eyes
+            //Draw Eyes
             Draw.FillColor = Black;
             Draw.Circle(210, 120, 4);
 
-            // Draw arms
+            //Draw arms
 
             Draw.FillColor = BunnyBody;
             Draw.Circle(155, 170, 15);
@@ -111,7 +156,7 @@ namespace MohawkGame2D
             Draw.FillColor = BunnyBody;
             Draw.Circle(245, 170, 15);
 
-            // Draw arm inner bits
+            //draw arm inner bits
 
             Draw.FillColor = GreyCloud;
             Draw.Circle(155, 170, 8);
@@ -120,12 +165,12 @@ namespace MohawkGame2D
             Draw.Circle(245, 170, 8);
 
 
-            // Draw ground
+            //Draw ground
 
             Draw.FillColor = GreenGrass;
             Draw.Rectangle(0, 265, 600, 400);
 
-            // Draw feet
+            //Draw feet
 
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(225, 260, 40, 20);
@@ -133,11 +178,24 @@ namespace MohawkGame2D
             Draw.FillColor = BunnyBody;
             Draw.Ellipse(175, 260, 40, 20);
 
-            // draw sun
-            Draw.FillColor = SunYellow;
-            Draw.Circle(380, 30, 60);
+
+
+        }
+
+        public void drawRaindrops()
+        {
+            Draw.FillColor = Rainblue;
+            for (int i = 0; i < raindropPositions.Length; i++)
+            {
+                raindropPositions[i] = raindropPositions[i] + new Vector2(0, raindropSpeed[i]);
+
+                if (raindropPositions[i].Y > 400)
+                {
+                    raindropPositions[i] = new Vector2(raindropPositions[i].X, 0f);
+                }
+                Draw.Circle(raindropPositions[i].X, raindropPositions[i].Y, 5);
+            }
 
         }
     }
-
 }
